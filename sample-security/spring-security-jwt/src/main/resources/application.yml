@@ -1,0 +1,26 @@
+spring:
+  datasource:       # 配置数据源
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/sample-spring-security?useUnicode=true&characterEncoding=utf8&serverTimezone=GMT%2B8
+    username: root
+    password: root
+  jpa:                 # 配置jpa
+    database: mysql       # 数据库类型
+    show-sql: true        # 打印sql语句
+    open-in-view: false
+    hibernate:
+      ddl-auto: update    # 加载 Hibernate时， 自动更新数据库结构
+
+secure:
+  ignored:
+    urls: #安全路径白名单
+      - /**/*.js
+      - /**/*.css
+      - /**/*.png
+      - /user/**
+
+jwt:
+  tokenHeader: Authorization #JWT存储的请求头
+  secret: mall-admin-secret #JWT加解密使用的密钥
+  expiration: 604800 #JWT的超期限时间(60*60*24)
+  tokenHead: Bearer  #JWT负载中拿到开头
