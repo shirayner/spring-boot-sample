@@ -13,7 +13,8 @@
     <packaging>pom</packaging>
 
     <modules>
-        <module>spring-security-quick-start</module>
+        <module>spring-security-auth-in-memory</module>
+        <module>spring-security-auth-in-db</module>
     </modules>
 
 

@@ -16,7 +16,17 @@
 
 ## 1.使用自动生成的密码
 
-（1）引入pom依赖
+（1）创建一个 springboot 工程
+
+```xml
+ <groupId>com.ray.study.sample</groupId>
+ <artifactId>spring-security-quick-start</artifactId>
+ <version>0.0.1-SNAPSHOT</version>
+```
+
+
+
+然后引入如下依赖
 
 ```xml
     <dependencies>
@@ -187,6 +197,146 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 
 
 # 二、基于数据库的认证
+
+## 1.依赖
+
+（1）创建一个 springboot 工程
+
+```xml
+ <groupId>com.ray.study.sample</groupId>
+ <artifactId>spring-security-quick-start</artifactId>
+ <version>0.0.1-SNAPSHOT</version>
+```
+
+
+
+然后引入如下依赖
+
+```xml
+ 	<dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-security</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-jpa</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-thymeleaf</artifactId>
+        </dependency>
+    </dependencies>
+
+```
+
+
+
+
+
+## 2.Security相关
+
+### 2.1 WebSecurityConfiguration
+
+```java
+@Configuration
+@EnableWebSecurity
+@EnableGlobalMethodSecurity(prePostEnabled = true)
+public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
+
+    @Override
+    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+        // 基于数据库的认证
+        auth.userDetailsService(detailsService())
+                .passwordEncoder(passwordEncoder());
+    }
+
+    @Override
+    protected void configure(HttpSecurity http) throws Exception {
+        http.authorizeRequests()                            // 定义哪些URL需要被保护、哪些不需要被保护
+                .antMatchers( "/login","/registry","/loginProcessing","/user/add").permitAll()   // 设置所有人都可以访问登录页面
+                .anyRequest().authenticated()               // 任何请求,登录后可以访问
+            .and().formLogin()                              // 定义当需要用户登录时候，转到的登录页面。
+                .loginPage("/login")                        // 设置登录页面
+                .loginProcessingUrl("/loginProcessing")     // 设置登录处理地址，即form表单的action地址，与此处保持一致即可。
+                .defaultSuccessUrl("/home")                 // 登录成功之后，默认跳转的页面
+                .failureUrl("/login?error").permitAll()     // 登录失败后，跳转到登录页面
+            .and().logout().logoutSuccessUrl("/login").permitAll()  // 登出之后，跳转到登录页面
+            .and().rememberMe().tokenValiditySeconds(1209600)   // 记住我
+            .and().csrf().disable();                        // 关闭csrf防护
+
+    }
+
+    @Override
+    public void configure(WebSecurity web) throws Exception {
+        web.ignoring().antMatchers("/js/**", "/css/**", "/images/**");
+    }
+
+
+
+    @Bean
+    PasswordEncoder passwordEncoder(){
+        return PasswordEncoderFactories.createDelegatingPasswordEncoder();
+        // return new BCryptPasswordEncoder();
+    }
+
+    @Bean
+    UserDetailsService detailsService() {
+        return new UserDetailsServiceImpl();
+    }
+}
+
+```
+
+
+
+> - loginProcessingUrl：没有别的含义，只是指定登录form表单的action地址必须为这个
+
+
+
+
+
+### 2.2 UserDetailsServiceImpl
+
+```java
+@Service
+public class UserDetailsServiceImpl implements UserDetailsService {
+
+    @Autowired
+    private UserRepository userRepository;
+
+    @Override
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        UserDO userDO = userRepository.findByUsername(username);
+        List<SimpleGrantedAuthority> authorities = new ArrayList<>();
+        for (RoleDO roleDO : userDO.getRoleList()) {
+            authorities.add(new SimpleGrantedAuthority(roleDO.getRoleCode()));
+        }
+        return new User(userDO.getUsername(), userDO.getPassword(), authorities);
+    }
+}
+
+```
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

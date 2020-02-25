@@ -1,0 +1,15 @@
+spring:
+  datasource:       # 配置数据源
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/sample-spring-security?useUnicode=true&characterEncoding=utf8&serverTimezone=GMT%2B8
+    username: root
+    password: root
+  jpa:                 # 配置jpa
+    database: mysql       # 数据库类型
+    show-sql: true        # 打印sql语句
+    open-in-view: false
+    hibernate:
+      ddl-auto: update    # 加载 Hibernate时， 自动更新数据库结构
+  thymeleaf:
+    mode: HTML5     # 设置模板模式，支持 HTML, XML TEXT JAVASCRIPT
+    cache: false    # 禁用模板缓存：开发配置为false,避免修改模板还要重启服务器
