@@ -3,8 +3,17 @@ package com.ray.study.smaple.security.controller;
 import com.ray.study.smaple.security.entity.UserDO;
 import com.ray.study.smaple.security.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.AuthenticationException;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+
+import javax.servlet.http.HttpServletRequest;
 
 /**
  * UserController
@@ -12,54 +21,49 @@ import org.springframework.web.bind.annotation.*;
  * @author ray
  * @date 2020/2/26
  */
-@CrossOrigin
+
 @RestController
-@RequestMapping(value = "/user")
+@RequestMapping("/users")
 public class UserController {
+
     @Autowired
     private IUserService userService;
 
-    @RequestMapping(value = "/list")
-    public String getToken() throws AuthenticationException {
-        return "list";
-    }
-
-
-    /**
-     * 用户登录
-     *
-     * @param username 用户名
-     * @param password 密码
-     * @return 操作结果
-     * @throws AuthenticationException 错误信息
-     */
-    @PostMapping(value = "/login")
-    public String getToken(String username, String password) throws AuthenticationException {
+    @PostMapping("/login")
+    public String login(
+                        @RequestParam String username,
+                        @RequestParam String password) {
         return userService.login(username, password);
     }
 
-    /**
-     * 用户注册
-     *
-     * @param user          用户信息
-     * @return 操作结果
-     * @throws AuthenticationException 错误信息
-     */
-    @PostMapping(value = "/register")
-    public String register(UserDO user) throws AuthenticationException {
-        return userService.register(user);
+    @PostMapping("/registry")
+    public String registry(@RequestBody UserDO user) {
+        return userService.registry(user);
     }
 
-    /**
-     * 刷新密钥
-     *
-     * @param authorization 原密钥
-     * @return 新密钥
-     * @throws AuthenticationException 错误信息
-     */
-    @GetMapping(value = "/refreshToken")
-    public String refreshToken(@RequestHeader String authorization) throws AuthenticationException {
-        return userService.refreshToken(authorization);
+    @DeleteMapping(value = "/{username}")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    public String delete(@PathVariable String username) {
+        userService.delete(username);
+        return username;
+    }
+
+    @GetMapping(value = "/{username}")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    public UserDO search(@PathVariable String username) {
+        return userService.search(username);
+    }
+
+    @GetMapping(value = "/me")
+    @PreAuthorize("hasRole('ROLE_ADMIN') or hasRole('ROLE_CLIENT')")
+    public UserDO whoami(HttpServletRequest req) {
+        return userService.whoami(req);
+    }
+
+    @GetMapping("/refresh")
+    @PreAuthorize("hasRole('ROLE_ADMIN') or hasRole('ROLE_CLIENT')")
+    public String refresh(HttpServletRequest req) {
+        return userService.refresh(req.getRemoteUser());
     }
 
 }

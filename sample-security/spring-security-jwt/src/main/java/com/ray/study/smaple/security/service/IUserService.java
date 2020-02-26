@@ -2,6 +2,8 @@ package com.ray.study.smaple.security.service;
 
 import com.ray.study.smaple.security.entity.UserDO;
 
+import javax.servlet.http.HttpServletRequest;
+
 /**
  * IUserService
  *
@@ -11,27 +13,20 @@ import com.ray.study.smaple.security.entity.UserDO;
 public interface IUserService {
 
     /**
-     * 用户登录
-     *
+     * 登录
      * @param username 用户名
      * @param password 密码
-     * @return 操作结果
+     * @return
      */
     String login(String username, String password);
 
-    /**
-     * 用户注册
-     *
-     * @param user 用户信息
-     * @return 操作结果
-     */
-    String register(UserDO user);
+    String registry(UserDO user);
 
-    /**
-     * 刷新密钥
-     *
-     * @param oldToken 原密钥
-     * @return 新密钥
-     */
-    String refreshToken(String oldToken);
+    void delete(String username);
+
+    UserDO search(String username);
+
+    UserDO whoami(HttpServletRequest req);
+
+    String refresh(String username);
 }

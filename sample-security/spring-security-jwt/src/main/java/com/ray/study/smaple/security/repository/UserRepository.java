@@ -5,6 +5,8 @@ import com.ray.study.smaple.security.entity.UserDO;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import javax.transaction.Transactional;
+
 /**
  * UserRepository
  *
@@ -14,4 +16,9 @@ import org.springframework.stereotype.Repository;
 public interface UserRepository extends JpaRepository<UserDO, Long> {
 
     UserDO findByUsername(String username);
+
+    boolean existsByUsername(String username);
+
+    @Transactional
+    void deleteByUsername(String username);
 }

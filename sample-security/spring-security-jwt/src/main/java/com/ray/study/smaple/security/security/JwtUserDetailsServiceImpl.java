@@ -7,8 +7,9 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 
+import java.util.List;
 import java.util.stream.Collectors;
 
 /**
@@ -17,6 +18,7 @@ import java.util.stream.Collectors;
  * @author ray
  * @date 2020/2/26
  */
+@Component
 public class JwtUserDetailsServiceImpl implements UserDetailsService {
 
     @Autowired
@@ -25,11 +27,13 @@ public class JwtUserDetailsServiceImpl implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         UserDO user = userRepository.findByUsername(username);
+
         if (user == null) {
-            throw new UsernameNotFoundException(String.format("No user found with username '%s'.", username));
-        } else {
-            return new JwtUser(user.getUsername(), user.getPassword(), user.getRoleList().stream().map(roleDO -> new SimpleGrantedAuthority(roleDO.getRoleCode())).collect(Collectors.toList()));
+            throw new UsernameNotFoundException("User '" + username + "' not found");
         }
+
+        List<SimpleGrantedAuthority> grantedAuthorities = user.getRoleList().stream().map(roleDO -> new SimpleGrantedAuthority(roleDO.getRoleCode())).collect(Collectors.toList());
+        return new JwtUser(user.getId(), user.getUsername(), user.getPassword(), grantedAuthorities);
     }
 
 }

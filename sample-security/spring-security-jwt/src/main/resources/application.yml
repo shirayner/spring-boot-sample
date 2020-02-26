@@ -17,7 +17,8 @@ secure:
       - /**/*.js
       - /**/*.css
       - /**/*.png
-      - /user/**
+      - /users/login
+      - /users/registry
 
 jwt:
   tokenHeader: Authorization #JWT存储的请求头

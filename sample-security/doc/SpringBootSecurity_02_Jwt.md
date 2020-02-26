@@ -10,6 +10,15 @@
 
 ## 推荐阅读
 
+> - [murraco/spring-boot-jwt](https://github.com/murraco/spring-boot-jwt)
+> - [LiHaodong888/pre](https://github.com/LiHaodong888/pre)
+
+
+
+
+
+其他参考资料：
+
 > - [Spring Boot中使用使用Spring Security和JWT](https://www.cnblogs.com/hackyo/p/8004928.html)
 > - [Spring Boot Security JWT 整合实现前后端分离认证示例](https://www.cnblogs.com/fishpro/p/spring-boot-study-securing-jwt.html)
 > - [Spring Boot Security 整合 JWT 实现 无状态的分布式API接口](https://juejin.im/post/5ca162b36fb9a05e181de126)
