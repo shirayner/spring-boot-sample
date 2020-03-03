@@ -13,9 +13,9 @@
     <packaging>pom</packaging>
 
     <modules>
-        <module>spring-security-auth-in-memory</module>
-        <module>spring-security-auth-in-db</module>
-        <module>spring-security-jwt</module>
+        <module>spring-boot-security-auth-in-memory</module>
+        <module>spring-boot-security-auth-in-db</module>
+        <module>spring-boot-security-jwt</module>
     </modules>
 
 
