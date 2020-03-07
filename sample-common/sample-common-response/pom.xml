@@ -3,25 +3,13 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
-        <artifactId>spring-boot-sample</artifactId>
+        <artifactId>sample-common</artifactId>
         <groupId>com.ray.study.sample</groupId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>sample-security</artifactId>
-    <packaging>pom</packaging>
+    <artifactId>sample-common-response</artifactId>
 
-    <modules>
-        <module>spring-boot-security-auth-in-memory</module>
-        <module>spring-boot-security-auth-in-db</module>
-        <module>spring-boot-security-jwt</module>
-        <module>spring-boot-security-cas</module>
-    </modules>
-
-
-    <dependencies>
-
-    </dependencies>
 
 </project>
