@@ -13,6 +13,7 @@
 *.iml
 *.ipr
 **/out/
+bin/
 
 # 3.NetBeans
 /nbproject/private/
@@ -29,6 +30,8 @@
 
 # 6.Maven
 target/
+overlays/
+
 
 # 7.gradle
 .gradle/
@@ -61,5 +64,4 @@ yarn-error.log*
 *.ntvs*
 *.njsproj
 *.sln
-
 

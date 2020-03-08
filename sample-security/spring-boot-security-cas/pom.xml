@@ -10,6 +10,12 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>spring-boot-security-cas</artifactId>
+    <packaging>pom</packaging>
 
+
+    <modules>
+        <module>cas-overlay-template-5.2</module>
+        <module>spring-boot-security-cas-client</module>
+    </modules>
 
 </project>

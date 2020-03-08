@@ -62,17 +62,20 @@
 （1）使用JDK自带的keytool工具生成证书
 
 ```
-keytool -genkey -alias cassso -keyalg RSA -keystore D:/cassso.keystore
+keytool -genkey -alias cas.server.com -keyalg RSA -keystore D:/casServer.keystore
 ```
 
-密码口令 cas-server
+> - 密码: changeit
+> - 别名：cas.server.com
+
+![image-20200308165905626](images/image-20200308165905626.png)
 
 
 
 （2）导出证书
 
 ```
-keytool -export -file D:/cassso.crt -alias cassso -keystore D:/cassso.keystore
+keytool -export -file D:/casServer.crt -alias cas.server.com -keystore D:/casServer.keystore
 ```
 
 
@@ -80,12 +83,10 @@ keytool -export -file D:/cassso.crt -alias cassso -keystore D:/cassso.keystore
 （3）将证书导入到JDK中，出现如下图表示导出成功。注：这里输入密码是JDK的，如果没有修改过密码为：changeit
 
 ```
-keytool -import -keystore C:/dev-env/Java/jdk1.8.0_221/jre/lib/security/cacerts -file D:/cassso.crt -alias cassso
+keytool -import -keystore C:/dev-env/Java/jdk1.8.0_221/jre/lib/security/cacerts -file D:/casServer.crt -alias cas.server.com
 ```
 
-
-
-![image-20200307195657265](images/image-20200307195657265.png)
+![image-20200308170018940](images/image-20200308170018940.png)
 
 
 
@@ -142,9 +143,9 @@ keytool -import -keystore C:/dev-env/Java/jdk1.8.0_221/jre/lib/security/cacerts 
 （3）修改 `application.properties`，配置证书与秘钥
 
 ```properties
-server.ssl.key-store=D:/cassso.keystore
-server.ssl.key-store-password=cas-server
-server.ssl.key-password=cas-server
+server.ssl.key-store=D:/casServer.keystore
+server.ssl.key-store-password=changeit
+server.ssl.key-password=changeit
 ```
 
 
@@ -358,6 +359,43 @@ cas.authn.jdbc.query[0].passwordEncoder.encodingAlgorithm=MD5
 
 
 
+
+
+
+
+
+
+
+# 异常
+
+> - [CAS 5.x搭建常见问题系列(1).未认证的授权服务](https://www.cnblogs.com/jpeanut/p/9249053.html)
+
+
+
+## 2.SSLHandshakeException: java.security.cert.CertificateException: No name matching cas.server.com found
+
+```
+2020-03-08 16:49:53.191 ERROR 34852 --- [nio-8088-exec-7] org.jasig.cas.client.util.CommonUtils    : SSL error getting response from host: cas.server.com : Error Message: java.security.cert.CertificateException: No name matching cas.server.com found
+
+javax.net.ssl.SSLHandshakeException: java.security.cert.CertificateException: No name matching cas.server.com found
+	at sun.security.ssl.Alerts.getSSLException(Alerts.java:192) ~[na:1.8.0_221]
+	at sun.security.ssl.SSLSocketImpl.fatal(SSLSocketImpl.java:1946) ~[na:1.8.0_221]
+	at sun.security.ssl.Handshaker.fatalSE(Handshaker.java:316) ~[na:1.8.0_221]
+	at sun.security.ssl.Handshaker.fatalSE(Handshaker.java:310) ~[na:1.8.0_221]
+	at sun.security.ssl.ClientHandshaker.serverCertificate(ClientHandshaker.java:1639) ~[na:1.8.0_221]
+	at sun.security.ssl.ClientHandshaker.processMessage(ClientHandshaker.java:223) ~[na:1.8.0_221]
+	at sun.security.ssl.Handshaker.processLoop(Handshaker.java:1037) ~[na:1.8.0_221]
+	at sun.security.ssl.Handshaker.process_record(Handshaker.java:965) ~[na:1.8.0_221]
+	at sun.security.ssl.SSLSocketImpl.readRecord(SSLSocketImpl.java:1064) ~[na:1.8.0_221]
+	at sun.security.ssl.SSLSocketImpl.performInitialHandshake(SSLSocketImpl.java:1367) ~[na:1.8.0_221]
+	at sun.security.ssl.SSLSocketImpl.startHandshake(SSLSocketImpl.java:1395) ~[na:1.8.0_221]
+	at sun.security.ssl.SSLSocketImpl.startHandshake(SSLSocketImpl.java:1379) ~[na:1.8.0_221]
+	at sun.net.www.protocol.https.HttpsClient.afterConnect(HttpsClient.java:559) ~[na:1.8.0_221]
+```
+
+
+
+参考：[解决CAS错误：java.security.cert.CertificateException: No name match](http://www.ibloger.net/article/3067.html)
 
 
 
