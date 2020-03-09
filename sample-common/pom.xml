@@ -14,6 +14,7 @@
     <modules>
         <module>sample-common-response</module>
         <module>sample-common-validator</module>
+        <module>sample-common-exception</module>
     </modules>
 
 
