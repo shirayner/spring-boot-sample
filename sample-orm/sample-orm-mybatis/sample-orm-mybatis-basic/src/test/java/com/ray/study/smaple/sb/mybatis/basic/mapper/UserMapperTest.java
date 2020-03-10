@@ -1,6 +1,7 @@
 package com.ray.study.smaple.sb.mybatis.basic.mapper;
 
 import com.ray.study.smaple.sb.mybatis.basic.entity.User;
+import org.apache.ibatis.annotations.Param;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,21 +37,24 @@ class UserMapperTest {
     @Test
     public void testUserMapper() {
         // 1.insert:  insert一条数据，并select出来验证
-        userMapper.insertByNameAndAge("tom", 21);
-        User u = userMapper.findByName("tom");
-        assertThat(u.getAge(), is(21));
+        String email = "tom@qq.com";
+        String name = "tom";
+        userMapper.insertBy(name, "password", email);
+        User u = userMapper.findByUserame(name);
+        assertThat(u.getEmail(), is(email));
 
 
         // 2.update:  update一条数据，并select出来验证
-        u.setAge(30);
+        String email2="tom1@qq.com";
+        u.setEmail(email2);
         userMapper.update(u);
-        u = userMapper.findByName("tom");
-        assertThat(u.getAge(), is(30));
+        u = userMapper.findByUserame(name);
+        assertThat(u.getEmail(), is(email2));
 
 
         // 3.delete  删除这条数据，并select验证
         userMapper.delete(u.getId());
-        u = userMapper.findByName("tom");
+        u = userMapper.findByUserame(name);
         assertThat(u, is(nullValue()));
     }
 
@@ -58,11 +62,13 @@ class UserMapperTest {
     public void insert() {
         // 1.insert:  insert一条数据，并select出来验证
         User user = new User();
-        user.setName("tom");
+        user.setUsername("tom");
+        user.setPassword("password");
+        user.setEmail("tom@qq.com");
         user.setAge(21);
         userMapper.insert(user);
 
-        User u = userMapper.findByName("tom");
+        User u = userMapper.findByUserame("tom");
 
         assertThat(u.getAge(), is(21));
     }
@@ -72,13 +78,15 @@ class UserMapperTest {
     public void insertByUser() {
         // 1.insert:  insert一条数据，并select出来验证
         User user = new User();
-        user.setName("tom");
+        user.setUsername("tom");
         user.setAge(21);
+        user.setPassword("password");
+        user.setEmail("tom@qq.com");
         user.setCreationDate(new Date());
         user.setLastUpdateDate(new Date());
         userMapper.insertByUser(user);
 
-        User u = userMapper.findByName("tom");
+        User u = userMapper.findByUserame("tom");
 
         assertThat(u.getAge(), is(21));
     }
@@ -87,11 +95,13 @@ class UserMapperTest {
     public void insertByMap() {
         // 1.insert:  insert一条数据，并select出来验证
         Map<String, Object> map = new HashMap<>();
-        map.put("name", "tom");
+        map.put("username", "tom");
+        map.put("password", "password");
+        map.put("email", "tom@qq.com");
         map.put("age", 21);
         userMapper.insertByMap(map);
 
-        User u = userMapper.findByName("tom");
+        User u = userMapper.findByUserame("tom");
 
         assertThat(u.getAge(), is(21));
     }

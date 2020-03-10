@@ -3,7 +3,7 @@
 <mapper namespace="com.ray.study.smaple.sb.mybatis.basic.mapper.UserMapper">
 
   <insert id="insert" parameterType="com.ray.study.smaple.sb.mybatis.basic.entity.User">
-    INSERT INTO `user`(`name`,`age`) VALUES (#{name},#{age})
+    INSERT INTO `user`(`username`,`password`, `email`, `age`) VALUES (#{username},#{password}, #{email},#{age})
   </insert>
 
 </mapper>

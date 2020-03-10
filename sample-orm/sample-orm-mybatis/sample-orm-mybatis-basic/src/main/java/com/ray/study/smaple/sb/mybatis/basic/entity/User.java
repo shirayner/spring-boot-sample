@@ -15,13 +15,15 @@ import java.util.Date;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class User implements Serializable {
-
-	private static final long serialVersionUID = 8655851615465363473L;
+public class User {
 
 	private Long id;
 
-	private String name;
+	private String username;
+
+	private String password;
+
+	private String email;
 
 	private Integer age;
 

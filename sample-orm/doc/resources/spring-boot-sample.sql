@@ -1,5 +1,5 @@
-DROP TABLE IF EXISTS `user`;
-CREATE TABLE `user`  (
+DROP TABLE IF EXISTS `sys_user`;
+CREATE TABLE `sys_user`  (
   `id` int(11) NOT NULL AUTO_INCREMENT  COMMENT '主键自增',
   `username` varchar(50) NOT NULL COMMENT '用户名',
   `password` varchar(64) NOT NULL COMMENT '密码',
