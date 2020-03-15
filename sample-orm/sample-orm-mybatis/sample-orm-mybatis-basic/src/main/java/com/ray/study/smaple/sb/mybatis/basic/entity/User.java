@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 /**
@@ -27,8 +28,8 @@ public class User {
 
 	private Integer age;
 
-	private Date creationDate;
+	private LocalDateTime createTime;
 
-	private Date lastUpdateDate;
+	private LocalDateTime updateTime;
 
 }

@@ -20,18 +20,18 @@
 
 ## 1.数据库准备
 
-创建数据库`spring-boot-sample` ，然后创建表`sys_user`
+创建数据库`spring-boot-sample` ，然后创建表`user`
 
 ```sql
-DROP TABLE IF EXISTS `sys_user`;
-CREATE TABLE `sys_user`  (
+DROP TABLE IF EXISTS `user`;
+CREATE TABLE `user`  (
   `id` int(11) NOT NULL AUTO_INCREMENT  COMMENT '主键自增',
   `username` varchar(50) NOT NULL COMMENT '用户名',
   `password` varchar(64) NOT NULL COMMENT '密码',
   `email`    varchar(50) NOT NULL COMMENT '邮箱',
   `age` int (3) unsigned DEFAULT 3 COMMENT '年龄',
-  `creation_date` datetime(0) NOT NULL DEFAULT CURRENT_TIMESTAMP  COMMENT '创建日期',
-  `last_update_date` datetime(0) NOT NULL DEFAULT CURRENT_TIMESTAMP  COMMENT '上次更新日期',
+  `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  `update_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='用户表';
 ```
@@ -119,12 +119,11 @@ public class User {
 
 	private Integer age;
 
-	private Date creationDate;
+	private LocalDateTime createTime;
 
-	private Date lastUpdateDate;
+	private LocalDateTime updateTime;
 
 }
-
 ```
 
 
@@ -132,6 +131,7 @@ public class User {
 ### 4.2 mapper
 
 ```java
+// @Mapper
 public interface UserMapper {
 
     /**
@@ -164,7 +164,7 @@ public interface UserMapper {
     @Insert("INSERT INTO user(username, password, email) VALUES(#{username}, #{password}, #{email})")
     int insertBy(@Param("username") String username, @Param("password") String password, @Param("email") String email);
 
-    @Insert("INSERT INTO user(username, password, email, age, creation_date, last_update_date) VALUES(#{username}, #{password}, #{email}, #{age}, #{creationDate}, #{lastUpdateDate} )")
+    @Insert("INSERT INTO user(username, password, email, age, create_time, update_time) VALUES(#{username}, #{password}, #{email}, #{age}, #{createTime}, #{updateTime} )")
     int insertByUser(User user);
 
     @Insert("INSERT INTO user(username, password, email, age) VALUES(#{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, #{age,jdbcType=INTEGER})")
@@ -244,8 +244,8 @@ class UserMapperTest {
         user.setAge(21);
         user.setPassword("password");
         user.setEmail("tom@qq.com");
-        user.setCreationDate(new Date());
-        user.setLastUpdateDate(new Date());
+        user.setCreateTime(LocalDateTime.now());
+        user.setUpdateTime(LocalDateTime.now());
         userMapper.insertByUser(user);
 
         User u = userMapper.findByUserame("tom");

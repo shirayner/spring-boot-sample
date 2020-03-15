@@ -10,6 +10,7 @@ import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -82,8 +83,8 @@ class UserMapperTest {
         user.setAge(21);
         user.setPassword("password");
         user.setEmail("tom@qq.com");
-        user.setCreationDate(new Date());
-        user.setLastUpdateDate(new Date());
+        user.setCreateTime(LocalDateTime.now());
+        user.setUpdateTime(LocalDateTime.now());
         userMapper.insertByUser(user);
 
         User u = userMapper.findByUserame("tom");

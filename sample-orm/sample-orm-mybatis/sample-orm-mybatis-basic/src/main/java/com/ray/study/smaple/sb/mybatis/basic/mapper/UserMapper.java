@@ -45,7 +45,7 @@ public interface UserMapper {
     @Insert("INSERT INTO user(username, password, email) VALUES(#{username}, #{password}, #{email})")
     int insertBy(@Param("username") String username, @Param("password") String password, @Param("email") String email);
 
-    @Insert("INSERT INTO user(username, password, email, age, creation_date, last_update_date) VALUES(#{username}, #{password}, #{email}, #{age}, #{creationDate}, #{lastUpdateDate} )")
+    @Insert("INSERT INTO user(username, password, email, age, create_time, update_time) VALUES(#{username}, #{password}, #{email}, #{age}, #{createTime}, #{updateTime} )")
     int insertByUser(User user);
 
     @Insert("INSERT INTO user(username, password, email, age) VALUES(#{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, #{age,jdbcType=INTEGER})")

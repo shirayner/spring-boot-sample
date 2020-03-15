@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 /**
@@ -33,8 +34,8 @@ public class User {
 
 	private Integer age;
 
-	private Date creationDate;
+	private LocalDateTime createTime;
 
-	private Date lastUpdateDate;
+	private LocalDateTime updateTime;
 
 }

@@ -20,18 +20,18 @@
 
 ## 1.数据库准备
 
-创建数据库`spring-boot-sample` ，然后创建表`sys_user`
+创建数据库`spring-boot-sample` ，然后创建表`user`
 
 ```sql
-DROP TABLE IF EXISTS `sys_user`;
-CREATE TABLE `sys_user`  (
+DROP TABLE IF EXISTS `user`;
+CREATE TABLE `user`  (
   `id` int(11) NOT NULL AUTO_INCREMENT  COMMENT '主键自增',
   `username` varchar(50) NOT NULL COMMENT '用户名',
   `password` varchar(64) NOT NULL COMMENT '密码',
   `email`    varchar(50) NOT NULL COMMENT '邮箱',
   `age` int (3) unsigned DEFAULT 3 COMMENT '年龄',
-  `creation_date` datetime(0) NOT NULL DEFAULT CURRENT_TIMESTAMP  COMMENT '创建日期',
-  `last_update_date` datetime(0) NOT NULL DEFAULT CURRENT_TIMESTAMP  COMMENT '上次更新日期',
+  `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  `update_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='用户表';
 ```
@@ -143,7 +143,7 @@ support-methods-argument=true  # 支持通过 Mapper 接口参数来传递分页
 @NoArgsConstructor
 @Table(name = "user")
 public class User {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
@@ -156,9 +156,9 @@ public class User {
 
 	private Integer age;
 
-	private Date creationDate;
+	private LocalDateTime createTime;
 
-	private Date lastUpdateDate;
+	private LocalDateTime updateTime;
 
 }
 
