@@ -21,11 +21,23 @@
         <module>sample-security</module>
         <module>sample-common</module>
         <module>sample-orm</module>
+        <module>sample-cache</module>
     </modules>
 
     <properties>
         <java.version>1.8</java.version>
     </properties>
+
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>com.ray.study.sample</groupId>
+                <artifactId>sample-orm-spring-data-jpa</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 
     <dependencies>
         <dependency>

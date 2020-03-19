@@ -1,6 +1,6 @@
-package com.ray.study.smaple.sb.data.jpa.repository;
+package com.ray.study.smaple.cache.repository;
 
-import com.ray.study.smaple.sb.data.jpa.entity.User;
+import com.ray.study.smaple.cache.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
