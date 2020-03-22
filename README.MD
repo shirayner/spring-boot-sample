@@ -66,9 +66,20 @@
 
 
 
+# spring-boot 合辑
+
+> - [ityouknow/awesome-spring-boot](https://github.com/ityouknow/awesome-spring-boot)
+> - 
+
+
+
+
+
 # 优秀项目推荐
 > - [xkcoding/spring-boot-demo](https://github.com/xkcoding/spring-boot-demo)
-> 
+> - [JeffLi1993/springboot-learning-example](https://github.com/JeffLi1993/springboot-learning-example)
+> - [dyc87112/SpringBoot-Learning](https://github.com/dyc87112/SpringBoot-Learning)
+> - [ityouknow/spring-boot-examples](https://github.com/ityouknow/awesome-spring-boot)
 
 
 
