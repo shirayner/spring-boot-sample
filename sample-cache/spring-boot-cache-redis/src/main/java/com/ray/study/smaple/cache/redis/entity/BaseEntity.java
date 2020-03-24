@@ -1,4 +1,4 @@
-package com.ray.study.smaple.cache.entity;
+package com.ray.study.smaple.cache.redis.entity;
 
 
 import lombok.Data;

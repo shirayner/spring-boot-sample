@@ -1,9 +1,9 @@
-package com.ray.study.smaple.cache.service.impl;
+package com.ray.study.smaple.cache.concurrentmap.service.impl;
 
 
-import com.ray.study.smaple.cache.entity.User;
-import com.ray.study.smaple.cache.repository.UserRepository;
-import com.ray.study.smaple.cache.service.UserService;
+import com.ray.study.smaple.cache.concurrentmap.entity.User;
+import com.ray.study.smaple.cache.concurrentmap.repository.UserRepository;
+import com.ray.study.smaple.cache.concurrentmap.service.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheEvict;

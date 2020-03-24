@@ -1,7 +1,7 @@
-package com.ray.study.smaple.cache.service;
+package com.ray.study.smaple.cache.concurrentmap.service;
 
 
-import com.ray.study.smaple.cache.entity.User;
+import com.ray.study.smaple.cache.concurrentmap.entity.User;
 
 /**
  * description

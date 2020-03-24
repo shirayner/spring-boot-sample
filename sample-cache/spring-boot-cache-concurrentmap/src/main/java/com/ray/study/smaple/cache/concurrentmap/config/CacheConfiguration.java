@@ -1,4 +1,4 @@
-package com.ray.study.smaple.cache.config;
+package com.ray.study.smaple.cache.redis.config;
 
 import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.annotation.Configuration;
