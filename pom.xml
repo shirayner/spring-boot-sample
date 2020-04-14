@@ -24,6 +24,7 @@
         <module>sample-cache</module>
         <module>sample-mq</module>
         <module>sample-ratelimit</module>
+        <module>sample-spring</module>
     </modules>
 
     <properties>
