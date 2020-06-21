@@ -13,6 +13,7 @@
     <packaging>pom</packaging>
     <modules>
         <module>sample-spring-data-elasticsearch</module>
+        <module>sample-elasticsearch-rest-high-level-client</module>
     </modules>
 
 
