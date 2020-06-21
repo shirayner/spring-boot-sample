@@ -25,6 +25,7 @@
         <module>sample-mq</module>
         <module>sample-ratelimit</module>
         <module>sample-spring</module>
+        <module>sample-search</module>
     </modules>
 
     <properties>
