@@ -14,6 +14,7 @@
     <modules>
         <module>sample-spring-data-elasticsearch</module>
         <module>sample-elasticsearch-rest-high-level-client</module>
+        <module>sample-elk</module>
     </modules>
 
 

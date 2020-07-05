@@ -1,0 +1,58 @@
+@baseUrl = http://localhost:9200
+@contentType = application/json
+
+#### API 基本格式：http://<ip>:<port>/<索引>/<类型>/<文档 id>
+
+### 1.创建索引
+PUT  {{baseUrl}}/people
+
+
+### 2.查看索引
+GET  {{baseUrl}}/people
+
+
+### 3.删除索引
+DELETE  {{baseUrl}}/people
+
+
+### 4.创建索引时指定 settings 和 mapping
+PUT  {{baseUrl}}/people
+Content-Type: {{contentType}}
+
+{
+    "settings": {
+        "index": {
+            "number_of_shards": 3,
+            "number_of_replicas": 1
+        }
+    },
+    "mappings": {
+        "properties": {
+            "name": {
+                "type": "text"
+            },
+            "age": {
+                "type": "integer"
+            },
+            "country": {
+                "type": "keyword"
+            },
+            "birthday": {
+                "type": "date",
+                "format": "yyyy-MM-dd HH:mm:ss||yyyy-MM-dd||epoch_millis"
+            }
+        }
+    }
+}
+
+
+### 5.创建文档时自动创建索引
+POST {{baseUrl}}/people/_doc/1
+Content-Type: {{contentType}}
+
+{
+  "name": "张三",
+  "age": 21,
+  "country": "中国",
+  "birthday": "2020-12-21 12:12:12"
+}

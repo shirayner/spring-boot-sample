@@ -1,0 +1,19 @@
+@baseUrl = http://localhost:9200
+@contentType = application/json
+
+#### API 基本格式：http://<ip>:<port>/<索引>/<类型>/<文档 id>
+
+### 1.集群健康查看
+GET {{baseUrl}}/_cat/health?v
+
+
+### 2.集群节点信息
+GET {{baseUrl}}/_cat/nodes?v
+
+
+### 3.列出所有的indices
+GET {{baseUrl}}/_cat/indices?v
+
+
+
+
