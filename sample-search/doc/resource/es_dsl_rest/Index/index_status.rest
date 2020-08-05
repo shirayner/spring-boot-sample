@@ -1,0 +1,21 @@
+#### 索引状态监控
+@baseUrl = http://localhost:9200
+@contentType = application/json
+
+#### API 基本格式：http://<ip>:<port>/<索引>/<类型>/<文档 id>
+
+
+############################
+##### 一、索引统计
+############################
+
+### 1.获取所有聚合以及索引的统计数据
+GET  {{baseUrl}}/_stats
+
+### 2.获取指定索引的统计数据
+GET  {{baseUrl}}/user,user1/_stats
+
+
+### 3.获取所有索引的混合和刷新的统计数据
+GET  {{baseUrl}}/_stats/merge,refresh
+

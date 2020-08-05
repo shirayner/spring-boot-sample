@@ -1,38 +1,216 @@
+#### 文档管理
 @baseUrl = http://localhost:9200
 @contentType = application/json
 
 #### API 基本格式：http://<ip>:<port>/<索引>/<类型>/<文档 id>
 
-### 1.创建索引
-PUT  {{baseUrl}}/people
+
+############################
+##### 一、增加文档
+############################
+
+### 1.新增文档，若存在相同文档ID,则更新此文档,version加1
+PUT {{baseUrl}}/user/_doc/1
+Content-Type: {{contentType}}
+
+{
+    "id": 1,
+    "name": "刘备",
+    "country": "蜀国",
+    "birthday": "1990-01-02 03:04:05",
+    "age": 18,
+    "remark": "刘备（161年－223年6月10日），即汉昭烈帝（221年－223年在位），又称先主，字玄德，东汉末年幽州涿郡涿县（今河北省涿州市）人，西汉中山靖王刘胜之后，三国时期蜀汉开国皇帝、政治家。\r\n刘备少年时拜卢植为师；早年颠沛流离，备尝艰辛，投靠过多个诸侯，曾参与镇压黄巾起义。先后率军救援北海相孔融、徐州牧陶谦等。陶谦病亡后，将徐州让与刘备。赤壁之战时，刘备与孙权联盟击败曹操，趁势夺取荆州。而后进取益州。于章武元年（221年）在成都称帝，国号汉，史称蜀或蜀汉。《三国志》评刘备的机权干略不及曹操，但其弘毅宽厚，知人待士，百折不挠，终成帝业。刘备也称自己做事“每与操反，事乃成尔”。\r\n章武三年（223年），刘备病逝于白帝城，终年六十三岁，谥号昭烈皇帝，庙号烈祖，葬惠陵。后世有众多文艺作品以其为主角，在成都武侯祠有昭烈庙为纪念。"
+}
+
+### 2.新增文档，指定操作类型为create强制执行创建操作，只有不存在此文档，才能创建成功
+PUT {{baseUrl}}/user/_doc/1?op_type=create&pretty
+Content-Type: {{contentType}}
+
+{
+    "id": 1,
+    "name": "刘备",
+    "country": "蜀国",
+    "birthday": "1990-01-02 03:04:05",
+    "age": 18,
+    "remark": "刘备（161年－223年6月10日），即汉昭烈帝（221年－223年在位），又称先主，字玄德，东汉末年幽州涿郡涿县（今河北省涿州市）人，西汉中山靖王刘胜之后，三国时期蜀汉开国皇帝、政治家。\r\n刘备少年时拜卢植为师；早年颠沛流离，备尝艰辛，投靠过多个诸侯，曾参与镇压黄巾起义。先后率军救援北海相孔融、徐州牧陶谦等。陶谦病亡后，将徐州让与刘备。赤壁之战时，刘备与孙权联盟击败曹操，趁势夺取荆州。而后进取益州。于章武元年（221年）在成都称帝，国号汉，史称蜀或蜀汉。《三国志》评刘备的机权干略不及曹操，但其弘毅宽厚，知人待士，百折不挠，终成帝业。刘备也称自己做事“每与操反，事乃成尔”。\r\n章武三年（223年），刘备病逝于白帝城，终年六十三岁，谥号昭烈皇帝，庙号烈祖，葬惠陵。后世有众多文艺作品以其为主角，在成都武侯祠有昭烈庙为纪念。"
+}
+
+### 3.新增文档，自动创建ID
+POST {{baseUrl}}/user/_doc?op_type=create&pretty
+Content-Type: {{contentType}}
+
+{
+    "id": 1,
+    "name": "刘备",
+    "country": "蜀国",
+    "birthday": "1990-01-02 03:04:05",
+    "age": 18,
+    "remark": "刘备（161年－223年6月10日），即汉昭烈帝（221年－223年在位），又称先主，字玄德，东汉末年幽州涿郡涿县（今河北省涿州市）人，西汉中山靖王刘胜之后，三国时期蜀汉开国皇帝、政治家。\r\n刘备少年时拜卢植为师；早年颠沛流离，备尝艰辛，投靠过多个诸侯，曾参与镇压黄巾起义。先后率军救援北海相孔融、徐州牧陶谦等。陶谦病亡后，将徐州让与刘备。赤壁之战时，刘备与孙权联盟击败曹操，趁势夺取荆州。而后进取益州。于章武元年（221年）在成都称帝，国号汉，史称蜀或蜀汉。《三国志》评刘备的机权干略不及曹操，但其弘毅宽厚，知人待士，百折不挠，终成帝业。刘备也称自己做事“每与操反，事乃成尔”。\r\n章武三年（223年），刘备病逝于白帝城，终年六十三岁，谥号昭烈皇帝，庙号烈祖，葬惠陵。后世有众多文艺作品以其为主角，在成都武侯祠有昭烈庙为纪念。"
+}
 
 
-### 2.查看索引
-GET  {{baseUrl}}/people
+
+############################
+##### 二、删除文档
+############################
+
+### 1.删除文档
+DELETE {{baseUrl}}/user/_doc/1
 
 
-### 3.删除索引
-DELETE  {{baseUrl}}/people
+############################
+##### 三、更新文档
+############################
 
 
-### 4.创建索引时指定 settings 和 mapping
-PUT  {{baseUrl}}/people
+############################
+##### 四、查询文档
+############################
+
+### 1.查询文档
+GET {{baseUrl}}/user/_doc/1?pretty
+
+
+### 2.查询文档,获取source中的部分内容:_source_includes、_source_excludes
+GET {{baseUrl}}/user/_doc/1?_source_includes=name,countr*,remark&pretty
+
+### 3.查询文档,指定只获取文档内容
+GET {{baseUrl}}/user/_doc/1/_source?pretty
+
+### 4.查询文档,分片选择
+GET {{baseUrl}}/user/_doc/1?routing=hahah&pretty
+
+
+############################
+##### 五、多文档操作
+############################
+
+### 1.多文档查询
+
+#### 1.1 多文档查询
+POST {{baseUrl}}/_mget?pretty
+Content-Type: {{contentType}}
+
+{
+    "docs": [
+        {
+            "_index": "user",
+            "_type": "_doc",
+            "_id": "1",
+            "_source": [
+                "age",
+                "name"
+            ]
+        },
+        {
+            "_index": "user",
+            "_type": "_doc",
+            "_id": "2",
+            "_source": "name"
+        }
+    ]
+}
+
+
+
+#### 1.2 多文档查询, index、type可以在URL中填写
+POST {{baseUrl}}/user/_doc/_mget?pretty
+Content-Type: {{contentType}}
+
+{
+    "docs": [
+        {
+            "_id": "1"
+        },
+        {
+            "_id": "2"
+        }
+    ]
+}
+
+#### 1.3 多文档查询, 进一步简化
+POST {{baseUrl}}/user/_doc/_mget?pretty
+Content-Type: {{contentType}}
+
+{
+    "ids": [
+        "1",
+        "2"
+    ]
+}
+
+
+### 2. 块操作, Content-Type为application/x-ndjson, 命令占两行，每行的结束字符为\r\n，第一行为元数据opType，第二行为有效载体
+### opType: index(创建或更新文档), create, update,delete
+
+#### 2.1 先批量查看1,4,5
+POST {{baseUrl}}/user/_doc/_mget?pretty
+Content-Type: {{contentType}}
+
+{
+    "ids": [
+        "1",
+        "4",
+        "5"
+    ]
+}
+
+### 2.2 再批量删除 4,5
+POST {{baseUrl}}/_bulk?pretty
+Content-Type: application/x-ndjson
+
+{"delete":{"_index":"user","_type":"_doc","_id":"4"}}
+{"delete":{"_index":"user","_type":"_doc","_id":"5"}}
+
+
+### 2.3 然后批量执行 index, create , update
+POST {{baseUrl}}/_bulk?pretty
+Content-Type: application/x-ndjson
+
+{"index":{"_index":"user","_type":"_doc","_id":"4"}}
+{"id":"4","name":"张飞","country": "蜀国","age":"23"}
+{"create":{"_index":"user","_type":"_doc","_id":"5"}}
+{"id":"5","name":"关羽","country": "蜀国","age":"24"}
+{"update":{"_index":"user","_type":"_doc","_id":"1"}}
+{"doc": {"name":"刘备1","country": "蜀国1"} }
+
+
+
+############################
+##### 六、索引词频率
+############################
+
+
+### 1.创建索引时，手动打开索引词频统计
+PUT  {{baseUrl}}/user4
 Content-Type: {{contentType}}
 
 {
     "settings": {
         "index": {
             "number_of_shards": 3,
-            "number_of_replicas": 1
+            "number_of_replicas": 2
+        },
+        "analysis": {
+            "analyzer": {
+                "fulltext_analyzer": {
+                    "type": "custom",
+                    "tokenizer": "whitespace",
+                    "filter": [
+                        "lowercase",
+                        "type_as_payload"
+                    ]
+                }
+            }
         }
     },
     "mappings": {
         "properties": {
-            "name": {
-                "type": "text"
-            },
-            "age": {
+            "id": {
                 "type": "integer"
+            },
+            "name": {
+                "type": "keyword"
             },
             "country": {
                 "type": "keyword"
@@ -40,19 +218,60 @@ Content-Type: {{contentType}}
             "birthday": {
                 "type": "date",
                 "format": "yyyy-MM-dd HH:mm:ss||yyyy-MM-dd||epoch_millis"
+            },
+            "age": {
+                "type": "integer"
+            },
+            "remark": {
+                "type": "text",
+                "term_vector": "with_positions_offsets_payloads",
+                "analyzer": "fulltext_analyzer"
             }
         }
     }
 }
 
 
-### 5.创建文档时自动创建索引
-POST {{baseUrl}}/people/_doc/1
+### 2.然后插入几条数据
+
+#### 2.1 插入刘备
+PUT {{baseUrl}}/user4/_doc/1
 Content-Type: {{contentType}}
 
 {
-  "name": "张三",
-  "age": 21,
-  "country": "中国",
-  "birthday": "2020-12-21 12:12:12"
+    "id": 1,
+    "name": "刘备",
+    "country": "蜀国",
+    "birthday": "1990-01-02 03:04:05",
+    "age": 18,
+    "remark": "刘备（161年－223年6月10日），即汉昭烈帝（221年－223年在位），又称先主，字玄德，东汉末年幽州涿郡涿县（今河北省涿州市）人，西汉中山靖王刘胜之后，三国时期蜀汉开国皇帝、政治家。\r\n刘备少年时拜卢植为师；早年颠沛流离，备尝艰辛，投靠过多个诸侯，曾参与镇压黄巾起义。先后率军救援北海相孔融、徐州牧陶谦等。陶谦病亡后，将徐州让与刘备。赤壁之战时，刘备与孙权联盟击败曹操，趁势夺取荆州。而后进取益州。于章武元年（221年）在成都称帝，国号汉，史称蜀或蜀汉。《三国志》评刘备的机权干略不及曹操，但其弘毅宽厚，知人待士，百折不挠，终成帝业。刘备也称自己做事“每与操反，事乃成尔”。\r\n章武三年（223年），刘备病逝于白帝城，终年六十三岁，谥号昭烈皇帝，庙号烈祖，葬惠陵。后世有众多文艺作品以其为主角，在成都武侯祠有昭烈庙为纪念。"
+}
+
+#### 2.2 插入曹操
+PUT {{baseUrl}}/user4/_doc/2
+Content-Type: {{contentType}}
+
+{
+    "id": 2,
+    "name": "曹操",
+    "country": "魏国",
+    "birthday": "1988-01-02 03:04:05",
+    "age": 18,
+    "remark": "曹操（155年－220年3月15日），字孟德，一名吉利，小字阿瞒，沛国谯县（今安徽亳州）人。东汉末年杰出的政治家、军事家、文学家、书法家，三国中曹魏政权的奠基人。\n曹操曾担任东汉丞相，后加封魏王，奠定了曹魏立国的基础。去世后谥号为武王。其子曹丕称帝后，追尊为武皇帝，庙号太祖。\n东汉末年，天下大乱，曹操以汉天子的名义征讨四方，对内消灭二袁、吕布、刘表、马超、韩遂等割据势力，对外降服南匈奴、乌桓、鲜卑等，统一了中国北方，并实行一系列政策恢复经济生产和社会秩序，扩大屯田、兴修水利、奖励农桑、重视手工业、安置流亡人口、实行“租调制”，从而使中原社会渐趋稳定、经济出现转机。黄河流域在曹操统治下，政治渐见清明，经济逐步恢复，阶级压迫稍有减轻，社会风气有所好转。曹操在汉朝的名义下所采取的一些措施具有积极作用。\n曹操军事上精通兵法，重贤爱才，为此不惜一切代价将看中的潜能分子收于麾下；生活上善诗歌，抒发自己的政治抱负，并反映汉末人民的苦难生活，气魄雄伟，慷慨悲凉；散文亦清峻整洁，开启并繁荣了建安文学，给后人留下了宝贵的精神财富，鲁迅评价其为“改造文章的祖师”。同时曹操也擅长书法，唐朝张怀瓘在《书断》将曹操的章草评为“妙品”。"
+}
+
+### 3.使用_termvectors 来查询统计结果
+GET {{baseUrl}}/user4/_doc/1/_termvectors?pretty=true
+
+### 4.指定参数查询
+POST {{baseUrl}}/user4/_doc/1/_termvectors?pretty=true
+Content-Type: {{contentType}}
+
+{
+    "fields": ["remark"],
+    "offsets": true,
+    "payloads": true,
+    "positions": true,
+    "term_statistics": true,
+    "field_statistics": true
 }

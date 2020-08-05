@@ -1,0 +1,194 @@
+#### 索引别名
+@baseUrl = http://localhost:9200
+@contentType = application/json
+
+#### API 基本格式：http://<ip>:<port>/<索引>/<类型>/<文档 id>
+
+
+############################
+##### 一、增加别名
+############################
+
+### 1.增加别名
+POST  {{baseUrl}}/_aliases
+Content-Type: {{contentType}}
+
+{
+    "actions": [
+        {
+            "add": {
+                "index": "user",
+                "alias": "userAlias1"
+            }
+        }
+    ]
+}
+
+### 2.增加别名， 一个别名关联多个索引
+POST  {{baseUrl}}/_aliases
+Content-Type: {{contentType}}
+
+{
+    "actions": [
+        {
+            "add": {
+                "index": "user",
+                "alias": "userAlias1"
+            }
+        },
+        {
+            "add": {
+                "index": "user2",
+                "alias": "userAlias1"
+            }
+        }
+    ]
+}
+
+### 3.增加别名， 一个别名关联多个索引
+POST  {{baseUrl}}/_aliases
+Content-Type: {{contentType}}
+
+{
+    "actions": [
+        {
+            "add": {
+                "indices": ["user", "user2"],
+                "alias": "userAlias1"
+            }
+        }
+    ]
+}
+
+
+
+### 4.创建过滤索引别名
+POST  {{baseUrl}}/_aliases
+Content-Type: {{contentType}}
+
+{
+    "actions": [
+        {
+            "add": {
+                "index": "user",
+                "alias": "userAlias1",
+                "filter": {
+                    "term": {
+                        "name": "刘备"
+                    }
+                }
+            }
+        }
+    ]
+}
+
+### 5.别名关联路由
+POST  {{baseUrl}}/_aliases
+Content-Type: {{contentType}}
+
+{
+    "actions": [
+        {
+            "add": {
+                "index": "user",
+                "alias": "userAlias1",
+                "routing": "1"
+            }
+        }
+    ]
+}
+
+
+### 6.别名关联路由,同时指定搜索路由和索引路由
+POST  {{baseUrl}}/_aliases
+Content-Type: {{contentType}}
+
+{
+    "actions": [
+        {
+            "add": {
+                "index": "user",
+                "alias": "userAlias1",
+                "search_routing": "1,2",
+                "index_routing":"2"
+            }
+        }
+    ]
+}
+
+
+### 7.通过参数添加别名
+POST  {{baseUrl}}/user/_alias/userAlias2
+Content-Type: {{contentType}}
+
+{
+    "routing": "1",
+    "filter": {
+        "term": {
+            "name": "刘备"
+        }
+    }
+}
+
+############################
+##### 二、删除别名
+############################
+
+### 1.删除别名
+POST  {{baseUrl}}/_aliases
+Content-Type: {{contentType}}
+
+{
+    "actions": [
+        {
+            "remove": {
+                "index": "user",
+                "alias": "userAlias1"
+            }
+        }
+    ]
+}
+
+
+### 2.删除别名
+DELETE  {{baseUrl}}/user/_alias/userAlias1
+
+
+
+############################
+##### 三、修改别名
+############################
+
+### 1.修改别名，别名没有修改的语法，可通过先删除，再增加来实现修改
+POST  {{baseUrl}}/_aliases
+Content-Type: {{contentType}}
+
+{
+    "actions": [
+        {
+            "remove": {
+                "index": "user",
+                "alias": "userAlias1"
+            }
+        },
+        {
+            "add": {
+                "index": "user",
+                "alias": "userAlias2"
+            }
+        }
+    ]
+}
+
+
+
+############################
+##### 四、查询别名
+############################
+
+
+### 1.查询所有别名
+GET  {{baseUrl}}/user/_alias/*
+
+### 2.查询现有的指定的别名
+GET  {{baseUrl}}/user/_alias/userAlias1

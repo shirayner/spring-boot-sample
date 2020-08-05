@@ -1,0 +1,93 @@
+#### 全文搜索
+@baseUrl = http://localhost:9200
+@contentType = application/json
+
+#### API 基本格式：http://<ip>:<port>/<索引>/<类型>/<文档 id>
+
+
+
+#### 最简单的查询，匹配所有文档
+POST {{baseUrl}}/user/_search
+Content-Type: {{contentType}}
+
+{
+  "query":{
+    "match_all": {}
+  }
+}
+
+#### 最简单的查询，匹配所有文档
+POST {{baseUrl}}/user/_search
+Content-Type: {{contentType}}
+
+{
+  "query":{
+    "match_all": {}
+  },
+  "from": 0,
+  "size": 10,
+  "_source":["name", "country"]
+}
+
+
+
+############################
+##### 1.布尔查询
+############################
+
+#### 1.1 模糊匹配
+POST {{baseUrl}}/user/_search
+Content-Type: {{contentType}}
+
+{
+  "query": {
+    "match": {
+      "remark": {
+        "query": "字孟德",
+        "operator": "and",
+                "fuzziness": "AUTO"
+      }
+    }
+  }
+}
+
+
+#### 1.1 短语查询
+POST {{baseUrl}}/user/_search
+Content-Type: {{contentType}}
+
+{
+  "query": {
+    "match_phrase": {
+      "remark": "字孟德"
+    }
+  }
+}
+
+
+#### 1.2 短语前缀查询
+POST {{baseUrl}}/user/_search
+Content-Type: {{contentType}}
+
+
+{
+  "query": {
+    "match_phrase_prefix": {
+      "remark": "字孟德"
+    }
+  }
+}
+
+
+#### 1.2 多字段查询 ^100 加权
+POST {{baseUrl}}/user/_search
+Content-Type: {{contentType}}
+
+{
+  "query": {
+    "multi_match": {
+      "query": "蜀国",
+      "fields": ["country^100", "remark"]
+    }
+  }
+}
