@@ -50,6 +50,7 @@ logs/
 # 10.无用文件
 *.zip
 *.pdf
+data/nodes/
 
 
 # 11.js
