@@ -13,6 +13,7 @@
     <packaging>pom</packaging>
     <modules>
         <module>sample-spring-mvc</module>
+        <module>sample-aop</module>
     </modules>
 
 
