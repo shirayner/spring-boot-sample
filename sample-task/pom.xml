@@ -13,6 +13,7 @@
     <packaging>pom</packaging>
     <modules>
         <module>sample-async-spring</module>
+        <module>sample-schedule-quartz</module>
     </modules>
 
 

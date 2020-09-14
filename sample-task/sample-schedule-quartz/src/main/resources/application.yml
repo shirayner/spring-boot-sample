@@ -1,0 +1,16 @@
+server:
+  port: 8088
+  servlet:
+    context-path: /
+
+spring:
+  datasource:       # 配置数据源
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/spring-boot-sample?useUnicode=true&characterEncoding=utf8&serverTimezone=GMT%2B8
+    username: root
+    password: root
+  jpa:                 # 配置jpa
+    database: mysql       # 数据库类型
+    show-sql: true        # 打印sql语句
+    hibernate:
+      ddl-auto: update    # 加载 Hibernate时， 自动更新数据库结构
