@@ -29,6 +29,7 @@
         <module>smaple-db</module>
         <module>sample-task</module>
         <module>sample-task/sample-schedule-quartz</module>
+        <module>sample-workflow</module>
     </modules>
 
     <properties>
