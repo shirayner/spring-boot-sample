@@ -30,6 +30,7 @@
         <module>sample-task</module>
         <module>sample-task/sample-schedule-quartz</module>
         <module>sample-workflow</module>
+        <module>sample-beanmap</module>
     </modules>
 
     <properties>
