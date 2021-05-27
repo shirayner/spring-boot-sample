@@ -21,7 +21,7 @@ public class UserConverterTest {
     public void toD() {
         User user = mockUser();
         UserDTO userDTO = UserConverter.INSTANCE.toE(user);
-        System.out.println(userDTO);
+        System.out.println(userDTO); // UserDTO(id=1, userName=tom, userStatus=true, createTime=1622030464158, roles=[RoleDTO(roleId=1, roleCode=ADMIN)])
         Assert.assertNotNull(user.getId());
     }
 
@@ -39,15 +39,14 @@ public class UserConverterTest {
 
 
     private static User mockUser() {
+        List<Role> roles = new ArrayList<>();
+        roles.add(mockRole());
+
         User user = new User();
         user.setId(1L);
         user.setUserName("tom");
         user.setUserStatus(Boolean.TRUE);
         user.setCreateTime(new Date());
-
-        List<Role> roles = new ArrayList<>();
-        roles.add(mockRole());
-
         user.setRoles(roles);
         return user;
     }

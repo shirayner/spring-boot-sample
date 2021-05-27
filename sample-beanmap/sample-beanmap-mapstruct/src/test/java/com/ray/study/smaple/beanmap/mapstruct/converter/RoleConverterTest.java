@@ -19,7 +19,7 @@ public class RoleConverterTest {
     public void toD() {
         Role role = mockRole();
         RoleDTO roleDTO = RoleConverter.INSTANCE.toE(role);
-        System.out.println(roleDTO);
+        System.out.println(roleDTO); // RoleDTO(roleId=1, roleCode=ADMIN)
         Assert.assertNotNull(roleDTO.getRoleId());
     }
 
@@ -31,7 +31,7 @@ public class RoleConverterTest {
     public void testToD() {
         List<Role> roles = mockRoleList();
         List<RoleDTO> roleDTOS = RoleConverter.INSTANCE.toE(roles);
-        System.out.println(roleDTOS);
+        System.out.println(roleDTOS); // [RoleDTO(roleId=1, roleCode=ADMIN)]
         Assert.assertNotEquals(0, roleDTOS.size());
     }
 

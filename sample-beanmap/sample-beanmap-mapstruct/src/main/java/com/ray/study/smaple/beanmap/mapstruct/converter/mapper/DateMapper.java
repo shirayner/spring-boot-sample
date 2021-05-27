@@ -9,7 +9,6 @@ import java.util.Date;
  */
 public class DateMapper {
 
-
     public Long asLong(Date date) {
         return date == null ? null : date.getTime();
     }
