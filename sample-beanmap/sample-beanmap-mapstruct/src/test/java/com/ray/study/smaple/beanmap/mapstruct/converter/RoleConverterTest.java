@@ -2,8 +2,8 @@ package com.ray.study.smaple.beanmap.mapstruct.converter;
 
 import com.ray.study.smaple.beanmap.mapstruct.dto.RoleDTO;
 import com.ray.study.smaple.beanmap.mapstruct.entity.Role;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,7 +20,7 @@ public class RoleConverterTest {
         Role role = mockRole();
         RoleDTO roleDTO = RoleConverter.INSTANCE.toE(role);
         System.out.println(roleDTO); // RoleDTO(roleId=1, roleCode=ADMIN)
-        Assert.assertNotNull(roleDTO.getRoleId());
+        Assertions.assertNotNull(roleDTO.getRoleId());
     }
 
     @Test
@@ -32,7 +32,7 @@ public class RoleConverterTest {
         List<Role> roles = mockRoleList();
         List<RoleDTO> roleDTOS = RoleConverter.INSTANCE.toE(roles);
         System.out.println(roleDTOS); // [RoleDTO(roleId=1, roleCode=ADMIN)]
-        Assert.assertNotEquals(0, roleDTOS.size());
+        Assertions.assertNotEquals(0, roleDTOS.size());
     }
 
     @Test

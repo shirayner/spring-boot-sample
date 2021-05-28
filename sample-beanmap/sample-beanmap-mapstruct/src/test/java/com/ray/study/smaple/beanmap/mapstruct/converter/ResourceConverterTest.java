@@ -2,10 +2,9 @@ package com.ray.study.smaple.beanmap.mapstruct.converter;
 
 import com.ray.study.smaple.beanmap.mapstruct.dto.ResourceDTO;
 import com.ray.study.smaple.beanmap.mapstruct.entity.Resource;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
-import static org.junit.Assert.*;
 
 /**
  * description
@@ -19,7 +18,7 @@ public class ResourceConverterTest {
         Resource resource = mockResource();
         ResourceDTO resourceDTO = ResourceConverter.INSTANCE.toD(resource);
         System.out.println(resourceDTO);
-        Assert.assertNotNull(resourceDTO.getCode());
+        Assertions.assertNotNull(resourceDTO.getCode());
     }
 
     @Test
@@ -29,7 +28,7 @@ public class ResourceConverterTest {
 
         resource = ResourceConverter.INSTANCE.toE(resourceDTO);
         System.out.println(resource);
-        Assert.assertNotNull(resource.getResourceCode());
+        Assertions.assertNotNull(resource.getResourceCode());
     }
 
     private static Resource mockResource() {

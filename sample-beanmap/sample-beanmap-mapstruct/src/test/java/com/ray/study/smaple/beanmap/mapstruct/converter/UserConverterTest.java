@@ -3,8 +3,8 @@ package com.ray.study.smaple.beanmap.mapstruct.converter;
 import com.ray.study.smaple.beanmap.mapstruct.dto.UserDTO;
 import com.ray.study.smaple.beanmap.mapstruct.entity.Role;
 import com.ray.study.smaple.beanmap.mapstruct.entity.User;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -22,7 +22,7 @@ public class UserConverterTest {
         User user = mockUser();
         UserDTO userDTO = UserConverter.INSTANCE.toE(user);
         System.out.println(userDTO); // UserDTO(id=1, userName=tom, userStatus=true, createTime=1622030464158, roles=[RoleDTO(roleId=1, roleCode=ADMIN)])
-        Assert.assertNotNull(user.getId());
+        Assertions.assertNotNull(user.getId());
     }
 
     @Test
