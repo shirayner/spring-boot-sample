@@ -103,7 +103,7 @@ public class Task extends AbstractTask {
 （2）在 **单元测试** 用例中，注入 `Task` 对象，并在测试用例中执行 `doTaskOne()`，`doTaskTwo()`，`doTaskThree()` 三个方法。
 
 ```java
-@RunWith(SpringRunner.class)
+@ExtendWith(SpringExtension.class)
 @SpringBootTest
 class TaskTest {
 
@@ -167,7 +167,7 @@ public class AsyncTask extends AbstractTask {
 （2）在 **单元测试** 用例中，注入 `AsyncTask` 对象，并在测试用例中执行 `doTaskOne()`，`doTaskTwo()`，`doTaskThree()` 三个方法。
 
 ```java
-@RunWith(SpringRunner.class)
+@ExtendWith(SpringExtension.class)
 @SpringBootTest
 class AsyncTaskTest {
 
@@ -244,7 +244,7 @@ public class AsyncCallBackTask extends AbstractTask {
 （2）在 **单元测试** 用例中，注入 `AsyncCallBackTask` 对象，并在测试用例中执行 `doTaskOneCallback()`，`doTaskTwoCallback()`，`doTaskThreeCallback()` 三个方法。循环调用 `Future` 的 `isDone()` 方法等待三个 **并发任务** 执行完成，记录最终执行时间。
 
 ```java
-@RunWith(SpringRunner.class)
+@ExtendWith(SpringExtension.class)
 @SpringBootTest
 class AsyncCallBackTaskTest {
 
@@ -368,7 +368,7 @@ public class AsyncExecutorTask extends AbstractTask {
 （3）在 **单元测试** 用例中，注入 `AsyncExecutorTask` 对象，并在测试用例中执行 `doTaskOne()`，`doTaskTwo()`，`doTaskThree()` 三个方法。
 
 ```java
-@RunWith(SpringRunner.class)
+@ExtendWith(SpringExtension.class)
 @SpringBootTest
 class AsyncExecutorTaskTest {
     @Autowired

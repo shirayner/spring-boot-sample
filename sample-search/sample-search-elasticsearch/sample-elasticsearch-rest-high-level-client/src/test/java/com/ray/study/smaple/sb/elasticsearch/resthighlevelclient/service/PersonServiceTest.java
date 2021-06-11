@@ -3,14 +3,14 @@ package com.ray.study.smaple.sb.elasticsearch.resthighlevelclient.service;
 import com.ray.study.smaple.sb.elasticsearch.resthighlevelclient.ElasticsearchRestHighLevelClientApplicationTest;
 import com.ray.study.smaple.sb.elasticsearch.resthighlevelclient.contants.ElasticsearchConstant;
 import com.ray.study.smaple.sb.elasticsearch.resthighlevelclient.model.Person;
-import org.junit.Test;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import static org.junit.Assert.*;
 
 /**
  * PersonServiceTest
@@ -18,6 +18,7 @@ import static org.junit.Assert.*;
  * @author ray
  * @date 2020/6/22
  */
+@Disabled("Disabled until you can connect a elastic server")
 public class PersonServiceTest extends ElasticsearchRestHighLevelClientApplicationTest {
 
     @Autowired

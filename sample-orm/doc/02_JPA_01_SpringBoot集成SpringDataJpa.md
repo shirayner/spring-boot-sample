@@ -229,7 +229,7 @@ public interface UserRepository extends JpaRepository<User, Long> {
 ## 5.测试类
 
 ```java
-@RunWith(SpringRunner.class)
+@ExtendWith(SpringExtension.class)
 @SpringBootTest
 class UserRepositoryTest {
 

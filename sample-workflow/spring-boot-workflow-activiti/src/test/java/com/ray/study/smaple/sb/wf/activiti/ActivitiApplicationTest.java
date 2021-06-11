@@ -1,17 +1,15 @@
 package com.ray.study.smaple.sb.wf.activiti;
 
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringRunner;
-
-import static org.junit.jupiter.api.Assertions.*;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 /**
  * description
  *
  * @author r.shi 2020/12/21 20:33
  */
-@RunWith(SpringRunner.class)
+@ExtendWith(SpringExtension.class)
 @SpringBootTest
 class ActivitiApplicationTest {
 

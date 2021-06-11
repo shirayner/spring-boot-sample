@@ -4,15 +4,16 @@ package com.ray.study.smaple.cache.concurrentmap.service;
 import com.ray.study.smaple.cache.concurrentmap.entity.User;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.Rollback;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 
 /**
@@ -21,7 +22,7 @@ import java.util.List;
  * @author ray
  * @date 2020/3/19
  */
-@RunWith(SpringRunner.class)
+@ExtendWith(SpringExtension.class)
 @SpringBootTest
 @Transactional
 @Rollback
@@ -43,15 +44,14 @@ class UserServiceTest {
         userToAddList.add(new User("tomcataaa","password", "tomcataaa@qq.com",24));
 
         // 新增用户
-        userToAddList.forEach(user -> {
-            userService.save(user);
-        });
+        userToAddList =  userToAddList.stream().map(user -> userService.save(user)).collect(Collectors.toList());
         log.info("==========新增用户完毕============");
 
         User user1 = userService.findByUsername(user0);
         User user2 = userService.findByUsername(user0);
         User user3 = userService.findByUsername(user0);
 
-        userService.remove(user0.getId());
+        userToAddList.forEach(user -> userService.remove(user.getId()));
+
     }
 }

@@ -12,7 +12,7 @@ public interface UserService {
 
 	User save(User user);
 
-	void remove(String id);
+	void remove(String username);
 
 	User findByUsername(User user);
 

@@ -1,17 +1,15 @@
 package com.ray.study.smaple.sb.mybatis.basic.mapper;
 
 import com.ray.study.smaple.sb.mybatis.basic.entity.User;
-import org.apache.ibatis.annotations.Param;
 import org.junit.jupiter.api.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.Rollback;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -25,7 +23,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
  * @author ray
  * @date 2020/3/10
  */
-@RunWith(SpringRunner.class)
+@ExtendWith(SpringExtension.class)
 @SpringBootTest
 @Transactional
 @Rollback
@@ -72,6 +70,7 @@ class UserMapperTest {
         User u = userMapper.findByUserame("tom");
 
         assertThat(u.getAge(), is(21));
+        userMapper.delete(u.getId());
     }
 
 
@@ -90,6 +89,8 @@ class UserMapperTest {
         User u = userMapper.findByUserame("tom");
 
         assertThat(u.getAge(), is(21));
+
+        userMapper.delete(u.getId());
     }
 
     @Test
@@ -105,6 +106,8 @@ class UserMapperTest {
         User u = userMapper.findByUserame("tom");
 
         assertThat(u.getAge(), is(21));
+
+        userMapper.delete(u.getId());
     }
 
 

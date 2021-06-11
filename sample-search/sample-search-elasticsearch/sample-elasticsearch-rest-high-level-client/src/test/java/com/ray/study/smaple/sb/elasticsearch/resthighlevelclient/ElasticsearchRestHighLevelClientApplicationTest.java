@@ -1,11 +1,9 @@
 package com.ray.study.smaple.sb.elasticsearch.resthighlevelclient;
 
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringRunner;
-
-import static org.junit.Assert.*;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 /**
  * ElasticsearchRestHighLevelClientApplicationTest
@@ -13,7 +11,7 @@ import static org.junit.Assert.*;
  * @author ray
  * @date 2020/6/22
  */
-@RunWith(SpringRunner.class)
+@ExtendWith(SpringExtension.class)
 @SpringBootTest
 public class ElasticsearchRestHighLevelClientApplicationTest {
 

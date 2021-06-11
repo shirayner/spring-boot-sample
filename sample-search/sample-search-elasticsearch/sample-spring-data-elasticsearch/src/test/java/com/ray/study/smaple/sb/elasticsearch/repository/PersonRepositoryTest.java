@@ -1,7 +1,6 @@
 package com.ray.study.smaple.sb.elasticsearch.repository;
 
 
-
 import cn.hutool.core.date.DateUtil;
 import cn.hutool.json.JSONUtil;
 import com.ray.study.smaple.sb.elasticsearch.SpringDataElasticsearchApplicationTest;
@@ -12,10 +11,11 @@ import org.elasticsearch.index.query.MatchQueryBuilder;
 import org.elasticsearch.index.query.QueryBuilders;
 import org.elasticsearch.search.aggregations.AggregationBuilders;
 import org.elasticsearch.search.aggregations.bucket.terms.StringTerms;
-import org.elasticsearch.search.aggregations.metrics.avg.InternalAvg;
+import org.elasticsearch.search.aggregations.metrics.InternalAvg;
 import org.elasticsearch.search.sort.SortBuilders;
 import org.elasticsearch.search.sort.SortOrder;
-import org.junit.Test;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -28,12 +28,13 @@ import java.util.List;
 
 /**
  * PersonRepositoryTest
- *  转自：
+ * 转自：
  *
  * @author ray
  * @date 2020/6/21
  */
 @Slf4j
+@Disabled("Disabled until you can connect a elastic server")
 public class PersonRepositoryTest extends SpringDataElasticsearchApplicationTest {
 
     @Autowired

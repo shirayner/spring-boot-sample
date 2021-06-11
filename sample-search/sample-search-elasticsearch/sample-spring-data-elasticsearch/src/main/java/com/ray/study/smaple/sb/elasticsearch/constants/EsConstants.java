@@ -13,9 +13,5 @@ public interface EsConstants {
      */
     String INDEX_NAME = "person";
 
-    /**
-     * 类型名称
-     */
-    String TYPE_NAME = "person";
 
 }

@@ -207,7 +207,7 @@ UserMapper.xml
 ## 5.测试类
 
 ```java
-@RunWith(SpringRunner.class)
+@ExtendWith(SpringExtension.class)
 @SpringBootTest
 @Transactional
 @Rollback

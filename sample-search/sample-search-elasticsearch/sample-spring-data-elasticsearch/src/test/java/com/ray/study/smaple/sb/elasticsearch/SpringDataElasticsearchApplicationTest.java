@@ -1,11 +1,10 @@
 package com.ray.study.smaple.sb.elasticsearch;
 
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 
-import static org.junit.Assert.*;
 
 /**
  * ElasticSearchQuickStartApplicationTest
@@ -13,7 +12,7 @@ import static org.junit.Assert.*;
  * @author ray
  * @date 2020/6/21
  */
-@RunWith(SpringRunner.class)
+@ExtendWith(SpringExtension.class)
 @SpringBootTest
 public class SpringDataElasticsearchApplicationTest {
 

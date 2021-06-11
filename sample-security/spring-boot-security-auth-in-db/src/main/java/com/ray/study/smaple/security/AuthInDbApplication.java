@@ -2,12 +2,6 @@ package com.ray.study.smaple.security;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import sun.plugin.services.BrowserService;
-
-import java.awt.*;
-import java.io.IOException;
-import java.net.URI;
-import java.net.URISyntaxException;
 
 /**
  * Application
@@ -18,7 +12,7 @@ import java.net.URISyntaxException;
 @SpringBootApplication
 public class AuthInDbApplication {
 
-    public static void main(String[] args) throws URISyntaxException, IOException {
+    public static void main(String[] args) {
         SpringApplication.run(AuthInDbApplication.class, args);
     }
 

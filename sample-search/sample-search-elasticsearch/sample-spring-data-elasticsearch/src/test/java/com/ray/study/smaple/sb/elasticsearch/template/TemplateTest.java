@@ -2,7 +2,8 @@ package com.ray.study.smaple.sb.elasticsearch.template;
 
 import com.ray.study.smaple.sb.elasticsearch.SpringDataElasticsearchApplicationTest;
 import com.ray.study.smaple.sb.elasticsearch.entity.Person;
-import org.junit.Test;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.elasticsearch.core.ElasticsearchTemplate;
 
@@ -12,6 +13,7 @@ import org.springframework.data.elasticsearch.core.ElasticsearchTemplate;
  * @author ray
  * @date 2020/6/21
  */
+@Disabled("Disabled until you can connect a elastic server")
 public class TemplateTest extends SpringDataElasticsearchApplicationTest {
 
     @Autowired

@@ -1,12 +1,10 @@
 package com.ray.study.smaple.sb.task.async.spring.task;
 
 import org.junit.jupiter.api.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringRunner;
-
-import static org.junit.jupiter.api.Assertions.*;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 /**
  * AsyncTaskTest
@@ -14,7 +12,7 @@ import static org.junit.jupiter.api.Assertions.*;
  * @author ray
  * @date 2020/8/25
  */
-@RunWith(SpringRunner.class)
+@ExtendWith(SpringExtension.class)
 @SpringBootTest
 class AsyncTaskTest {
 

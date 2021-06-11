@@ -1,19 +1,18 @@
 package com.ray.study.smaple.sb.data.jpa.repository;
 
 import com.ray.study.smaple.sb.data.jpa.entity.User;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
 import static org.hamcrest.CoreMatchers.notNullValue;
-import static org.hamcrest.CoreMatchers.nullValue;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
 
@@ -24,7 +23,7 @@ import static org.hamcrest.Matchers.is;
  * @author ray
  * @date 2020/3/16
  */
-@RunWith(SpringRunner.class)
+@ExtendWith(SpringExtension.class)
 @SpringBootTest
 class UserRepositoryTest {
 
@@ -70,6 +69,8 @@ class UserRepositoryTest {
         List<User> userList4 = userRepository.findByUsernameContaining("tom");
         //assertThat(userList4.size(), is(notNullValue()));
         System.out.println(userList4);
+
+        userRepository.deleteAll();
     }
 
 
@@ -87,6 +88,8 @@ class UserRepositoryTest {
         User user1 = userRepository.save(user);
 
         assertThat(user.getId(),is(notNullValue()));
+
+        userRepository.deleteAll();
     }
 
 
@@ -97,18 +100,19 @@ class UserRepositoryTest {
     public void updateUser(){
 
         User user = new User();
-        user.setId(1L);
         user.setUsername("tom2");
         user.setAge(1212);
         User user1 = userRepository.save(user);
 
-        Optional<User> optionalUser = userRepository.findById(1L);
+        Optional<User> optionalUser = userRepository.findById(user1.getId());
         User updatedUser = null;
         if(optionalUser.isPresent()){
             updatedUser = optionalUser.get();
         }
 
         assertThat(updatedUser.getAge(),is(1212));
+
+        userRepository.deleteAll();
     }
 
 
@@ -119,10 +123,14 @@ class UserRepositoryTest {
     public void deleteUser(){
         User user = new User();
         user.setUsername("tom2");
+        userRepository.save(user);
+        List<User> userList = userRepository.findAllByUsername("tom2");
+        Assertions.assertNotEquals(0, userList.size());
+
         userRepository.delete(user);
 
-        List<User> userList = userRepository.findAllByUsername("tom2");
-        assertThat(userList, is(nullValue()));
+        userList = userRepository.findAllByUsername("tom2");
+        Assertions.assertEquals(0, userList.size());
 
     }
 

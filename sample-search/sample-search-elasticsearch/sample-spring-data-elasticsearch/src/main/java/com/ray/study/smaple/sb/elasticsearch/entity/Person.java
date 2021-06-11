@@ -17,7 +17,7 @@ import java.util.Date;
  * @author ray
  * @date 2020/6/21
  */
-@Document(indexName = EsConstants.INDEX_NAME, type = EsConstants.TYPE_NAME, shards = 1, replicas = 0)
+@Document(indexName = EsConstants.INDEX_NAME, shards = 1, replicas = 0)
 @Data
 @NoArgsConstructor
 @AllArgsConstructor

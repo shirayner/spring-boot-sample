@@ -403,7 +403,7 @@ public interface UserRepository extends JpaRepository<User, Long> {
 - UserServiceTest
 
 ```java
-@RunWith(SpringRunner.class)
+@ExtendWith(SpringExtension.class)
 @SpringBootTest
 @Transactional
 @Rollback

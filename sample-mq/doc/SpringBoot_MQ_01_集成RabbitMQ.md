@@ -390,7 +390,7 @@ import org.springframework.test.context.junit4.SpringRunner;
  * @author shira 2019/05/15 14:19
  */
 
-@RunWith(SpringRunner.class)
+@ExtendWith(SpringExtension.class)
 @SpringBootTest
 public class RabbitMsgServiceTest {
 

@@ -821,7 +821,7 @@ public class PersonServiceImpl extends BaseElasticsearchService implements Perso
 #### 6.1 测试基类
 
 ```java
-@RunWith(SpringRunner.class)
+@ExtendWith(SpringExtension.class)
 @SpringBootTest
 public class ElasticsearchRestHighLevelClientApplicationTest {
 

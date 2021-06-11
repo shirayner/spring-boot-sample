@@ -206,7 +206,7 @@ public interface PersonRepository extends ElasticsearchRepository<Person, Long> 
 #### 5.1 测试基类
 
 ```
-@RunWith(SpringRunner.class)
+@ExtendWith(SpringExtension.class)
 @SpringBootTest
 public class SpringDataElasticsearchApplicationTest {
 
